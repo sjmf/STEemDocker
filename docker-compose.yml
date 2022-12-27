@@ -1,0 +1,25 @@
+version: '3.6'
+
+services:
+  steem:
+    build:
+      context: .
+    environment:
+      - DISPLAY=host.docker.internal:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - hdd:/app/hdd
+      - images:/app/images
+
+volumes:
+  hdd:
+    driver_opts:
+      type: none
+      device: ${PWD}/hdd
+      o: bind
+  images:
+    driver_opts:
+      type: none
+      device: ${PWD}/images
+      o: bind
+
